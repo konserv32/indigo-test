@@ -1,0 +1,7 @@
+dist
+.vscode
+.angular
+node_modules
+.helm
+.husky
+
