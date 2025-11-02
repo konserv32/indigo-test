@@ -3,18 +3,21 @@
     <h2>Вход</h2>
     <p class="sign-in__header__subtitle">Используйте свой логин и пароль или зарегистрируйтесь</p>
   </header>
-  <form [formGroup]="loginForm">
-    <mat-form-field class="sign-in__form-field">
+  <form class="sign-in__form" [formGroup]="loginForm">
+    <mat-form-field class="sign-in__form__form-field">
       <mat-label>Логин</mat-label>
       <input matInput [formControl]="loginForm.controls.login" />
     </mat-form-field>
-    <mat-form-field class="sign-in__form-field">
+    <mat-form-field class="sign-in__form__form-field">
       <mat-label>Пароль</mat-label>
       <input matInput type="password" [formControl]="loginForm.controls.password" />
     </mat-form-field>
+    @if (hasError) {
+      <p class="sign-in__form__error-message">Неверный логин или пароль</p>
+    }
   </form>
   <footer class="sign-in__footer">
     <button matButton="filled" (click)="login()">Войти</button>
-    <button matButton="elevated">Регистрация</button>
+    <button matButton="elevated" routerLink="/auth/registration">Регистрация</button>
   </footer>
 </div>

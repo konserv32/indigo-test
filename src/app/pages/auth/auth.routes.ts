@@ -14,6 +14,13 @@ export const AUTH_ROUTES: Routes = [
         title: 'Вход в систему',
       },
       {
+        path: 'registration',
+        loadComponent: async () =>
+          import('./registration/registration.component').then((c) => c.RegistrationComponent),
+        pathMatch: 'full',
+        title: 'Регистрация в системе',
+      },
+      {
         path: '**',
         redirectTo: 'sign-in',
       }

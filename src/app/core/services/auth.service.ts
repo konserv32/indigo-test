@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LocalstorageEnum } from '../enums/localstorage.enum';
 import { AuthDto } from '../models/auth.dto';
 import { AuthApiService } from '../api/auth-api.service';
+import { RegistrationDto } from '../models/registration.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,19 @@ export class AuthService {
   public login(authDto: AuthDto): Observable<UserInterface | null> {
     return this.authApiService
       .login(authDto)
+      .pipe(
+        tap((user) => {
+          if (user) {
+            localStorage.setItem(LocalstorageEnum.user, JSON.stringify(user));
+            this.userSubject.next(user);
+          }
+        }),
+      );
+  }
+
+  public registration(registrationDto: RegistrationDto): Observable<UserInterface | null> {
+    return this.authApiService
+      .registration(registrationDto)
       .pipe(
         tap((user) => {
           if (user) {

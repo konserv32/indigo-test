@@ -1,0 +1,60 @@
+<div class="registration">
+  <header class="registration__header">
+    <h2>Регистрация</h2>
+    <p class="registration__header__subtitle">Заполните форму ниже</p>
+  </header>
+  <form class="registration" [formGroup]="registrationForm">
+    <mat-form-field class="registration__form__form-field">
+      <mat-label>Имя</mat-label>
+      <input
+        matInput
+        [formControl]="registrationForm.controls.name"
+        [errorStateMatcher]="errorStateMatcher"
+      />
+      @if (registrationForm.controls.name.hasError('required')) {
+        <mat-error>Имя должно быть заполнено</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="registration__form__form-field">
+      <mat-label>Фамилия</mat-label>
+      <input
+        matInput
+        [formControl]="registrationForm.controls.lastname"
+        [errorStateMatcher]="errorStateMatcher"
+      />
+      @if (registrationForm.controls.lastname.hasError('required')) {
+        <mat-error>Фамилия должна быть заполнена</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="registration__form__form-field">
+      <mat-label>Логин</mat-label>
+      <input
+        matInput
+        [formControl]="registrationForm.controls.login"
+        [errorStateMatcher]="errorStateMatcher"
+      />
+      @if (registrationForm.controls.login.hasError('required')) {
+        <mat-error>Логин должен быть заполнен</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="registration__form__form-field">
+      <mat-label>Пароль</mat-label>
+      <input
+        matInput
+        type="password"
+        [formControl]="registrationForm.controls.password"
+        [errorStateMatcher]="errorStateMatcher"
+      />
+      @if (registrationForm.controls.password.hasError('required')) {
+        <mat-error>Пароль должен быть заполнен</mat-error>
+      }
+    </mat-form-field>
+    @if (hasError) {
+      <p class="registration__form__error-message">Такой пользователь уже зарегистрирован</p>
+    }
+  </form>
+  <footer class="registration__footer">
+    <button matButton="filled" (click)="registration()">Зарегистрироваться</button>
+    <button matButton="elevated" routerLink="/auth/sign-in">Назад</button>
+  </footer>
+</div>

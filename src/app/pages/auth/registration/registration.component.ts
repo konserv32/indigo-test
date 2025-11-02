@@ -6,21 +6,26 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../core/services/auth.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router, RouterLink } from '@angular/router';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @UntilDestroy()
 @Component({
   selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss',
+  templateUrl: './registration.component.html',
+  styleUrl: './registration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [MatFormFieldModule, MatInput, MatButton, ReactiveFormsModule, RouterLink],
 })
-export class SignInComponent {
-  protected loginForm = new FormGroup({
+export class RegistrationComponent {
+  protected registrationForm = new FormGroup({
+    name: new FormControl<string>('', [Validators.required]),
+    lastname: new FormControl<string>('', [Validators.required]),
     login: new FormControl<string>('', [Validators.required]),
     password: new FormControl<string>('', [Validators.required]),
   });
+
+  protected errorStateMatcher = new ErrorStateMatcher();
 
   protected hasError = false;
 
@@ -29,13 +34,12 @@ export class SignInComponent {
     private readonly authService: AuthService,
   ) {}
 
-  public login() {
-    this.hasError = false;
-    this.loginForm.markAsTouched();
+  public registration() {
+    this.registrationForm.markAllAsTouched();
 
-    if (this.loginForm.valid) {
+    if (this.registrationForm.valid) {
       this.authService
-        .login(this.loginForm.value)
+        .registration(this.registrationForm.value)
         .pipe(untilDestroyed(this))
         .subscribe((user) => {
           if (user) {
