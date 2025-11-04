@@ -5,10 +5,12 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '' },
   {
     path: '',
+    title: 'Cat management app',
+    canActivate: [AuthGuard],
     loadComponent: async () =>
       import('./shared/layouts/main/main-layout.component').then((m) => m.MainLayoutComponent),
-    canActivate: [AuthGuard],
-    title: 'Cat management app'
+    loadChildren: async () =>
+      import('./pages/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES),
   },
 
   {

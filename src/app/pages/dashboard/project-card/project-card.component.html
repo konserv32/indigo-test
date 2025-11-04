@@ -1,0 +1,23 @@
+<app-card class="project-card">
+  <header class="project-card__header">
+    <h3>{{ project().id }}. {{ project().name }}</h3>
+    <button matIconButton><app-icon name="more"></app-icon></button>
+  </header>
+  <div class="project-card__content">
+    <canvas
+      baseChart
+      [labels]="doughnutChartLabels"
+      [datasets]="doughnutChartDatasets()"
+      [options]="doughnutChartOptions"
+      [legend]="true"
+      [type]="'doughnut'"
+    >
+    </canvas>
+    <div class="project-card__content__info">
+      <p><strong>Начало проекта:</strong> {{ project().startDate | date: 'dd.MM.yyyy' }}</p>
+      <p><strong>Завершение проекта:</strong> {{ project().startDate | date: 'dd.MM.yyyy' }}</p>
+      <p><strong>Поставлено задач:</strong> {{ project().tasksTotal }}</p>
+      <p><strong>Выполнено задач:</strong> {{ project().tasksCompleted }}</p>
+    </div>
+  </div>
+</app-card>

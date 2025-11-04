@@ -1,0 +1,22 @@
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    gap: 16px;
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+}

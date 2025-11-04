@@ -1,0 +1,11 @@
+:host {
+  display: grid;
+  grid-template-rows: 18px 1fr;
+  gap: 24px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
