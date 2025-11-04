@@ -18,7 +18,11 @@ export class AuthService {
 
   constructor(private readonly authApiService: AuthApiService) {}
 
-  public login(authDto: AuthDto): Observable<UserInterface | null> {
+  public get userValue(): UserInterface {
+    return this.userSubject.value;
+  }
+
+  public login(authDto: AuthDto): Observable<UserInterface> {
     return this.authApiService
       .login(authDto)
       .pipe(
@@ -31,7 +35,7 @@ export class AuthService {
       );
   }
 
-  public registration(registrationDto: RegistrationDto): Observable<UserInterface | null> {
+  public registration(registrationDto: RegistrationDto): Observable<UserInterface> {
     return this.authApiService
       .registration(registrationDto)
       .pipe(

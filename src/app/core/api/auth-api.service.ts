@@ -12,7 +12,7 @@ import { RegistrationDto } from '../models/registration.dto';
 export class AuthApiService {
   constructor(private readonly localStorageService: LocalStorageService) {}
 
-  public login(authDto: AuthDto): Observable<UserInterface | null> {
+  public login(authDto: AuthDto): Observable<UserInterface> {
     const users = this.localStorageService.getItem<UserInterface[]>(LocalstorageEnum.users);
 
     if (users) {
@@ -23,10 +23,10 @@ export class AuthApiService {
       }
     }
 
-    return of(null);
+    throw new Error('Unauthorized');
   }
 
-  public registration(registrationDto: RegistrationDto): Observable<UserInterface | null> {
+  public registration(registrationDto: RegistrationDto): Observable<UserInterface> {
     const users = this.localStorageService.getItem<UserInterface[]>(LocalstorageEnum.users) || [];
 
     if (users) {
@@ -41,6 +41,6 @@ export class AuthApiService {
       }
     }
 
-    return of(null);
+    throw new Error('Unregistered');
   }
 }

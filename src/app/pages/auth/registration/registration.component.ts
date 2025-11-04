@@ -10,7 +10,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

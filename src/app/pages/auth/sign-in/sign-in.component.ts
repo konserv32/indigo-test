@@ -6,6 +6,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../../core/services/auth.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Router, RouterLink } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -36,12 +37,16 @@ export class SignInComponent {
     if (this.loginForm.valid) {
       this.authService
         .login(this.loginForm.value)
-        .pipe(untilDestroyed(this))
+        .pipe(
+          untilDestroyed(this),
+          catchError((err) => {
+            this.hasError = true;
+            throw err;
+          }),
+        )
         .subscribe((user) => {
           if (user) {
             this.router.navigate(['/']);
-          } else {
-            this.hasError = true;
           }
         });
     }
