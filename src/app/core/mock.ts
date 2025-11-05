@@ -25,7 +25,7 @@ export const PROJECTS_MOCK = [
   },
   {
     id: 4,
-    name: 'Проект A',
+    name: 'Проект D',
     tasksCompleted: 25,
     tasksTotal: 115,
     startDate: '2024-01-01',
@@ -33,7 +33,7 @@ export const PROJECTS_MOCK = [
   },
   {
     id: 5,
-    name: 'Проект B',
+    name: 'Проект E',
     tasksCompleted: 75,
     tasksTotal: 190,
     startDate: '2023-06-01',
@@ -41,7 +41,7 @@ export const PROJECTS_MOCK = [
   },
   {
     id: 6,
-    name: 'Проект C',
+    name: 'Проект F',
     tasksCompleted: 10,
     tasksTotal: 85,
     startDate: '2024-06-01',
@@ -49,7 +49,7 @@ export const PROJECTS_MOCK = [
   },
   {
     id: 7,
-    name: 'Проект A',
+    name: 'Проект G',
     tasksCompleted: 45,
     tasksTotal: 50,
     startDate: '2024-01-01',
@@ -57,7 +57,7 @@ export const PROJECTS_MOCK = [
   },
   {
     id: 8,
-    name: 'Проект B',
+    name: 'Проект H',
     tasksCompleted: 120,
     tasksTotal: 140,
     startDate: '2023-06-01',

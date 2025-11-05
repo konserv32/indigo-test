@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core';
 import { DashboardApiService } from '../../core/api/dashboard-api.service';
 import { ProjectInterface } from '../../core/models/project.model';
-import { ProjectCardComponent } from './project-card/project-card.component';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { DoughnutController } from 'chart.js';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { delay } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ProgressWidgetComponent } from './widgets/progress/progress-widget.component';
+import { WidgetsService } from '../../core/services/widgets.service';
 
 @UntilDestroy()
 @Component({
@@ -16,16 +17,15 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   providers: [DashboardApiService, provideCharts(withDefaultRegisterables(DoughnutController))],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ProjectCardComponent, CdkDropList, CdkDrag],
+  imports: [ CdkDropList, CdkDrag, ProgressWidgetComponent],
 })
 export class DashboardComponent {
   protected page = signal<number>(1);
 
   public projects = signal<ProjectInterface[]>([]);
 
-  constructor(private readonly dashboardApiService: DashboardApiService) {
+  constructor(private readonly dashboardApiService: DashboardApiService, public readonly widgetsService: WidgetsService) {
     effect(() => {
-
       this.dashboardApiService
         .getProjects(this.page())
         .pipe(delay(1000), untilDestroyed(this))

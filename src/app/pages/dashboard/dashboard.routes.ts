@@ -1,9 +1,26 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
+import { inject } from '@angular/core';
+import { WidgetsService } from '../../core/services/widgets.service';
+import { ProgressWidgetComponent } from './widgets/progress/progress-widget.component';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    loadComponent: async () => import('./dashboard.component').then((c) => c.DashboardComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: async () =>
+          import('./widgets/progress/progress-widget.component').then(
+            (m) => ProgressWidgetComponent,
+          ),
+        canMatch: [
+          async () => {
+            const widgetsService = inject(WidgetsService);
+            return widgetsService.widget;
+          },
+        ],
+      },
+    ],
   },
 ];

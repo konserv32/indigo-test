@@ -14,8 +14,6 @@ export class AuthService {
     JSON.parse(localStorage.getItem(LocalstorageEnum.user)!),
   );
 
-  public user$: Observable<UserInterface | null> = this.userSubject.asObservable();
-
   constructor(private readonly authApiService: AuthApiService) {}
 
   public get userValue(): UserInterface {

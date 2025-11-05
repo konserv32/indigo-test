@@ -1,0 +1,15 @@
+<app-card class="progress-widget" cursor="pointer">
+  <header class="progress-widget__header">
+    <h3>Прогресс</h3>
+    <button matIconButton><app-icon name="more"></app-icon></button>
+  </header>
+  <canvas
+    baseChart
+    [labels]="doughnutChartLabels"
+    [datasets]="doughnutChartDatasets()"
+    [options]="doughnutChartOptions"
+    [legend]="true"
+    [type]="'doughnut'"
+  >
+  </canvas>
+</app-card>
