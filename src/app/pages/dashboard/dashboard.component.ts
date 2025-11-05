@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, signal, inject } from '@angular/core';
 import { DashboardApiService } from '../../core/api/dashboard-api.service';
 import { ProjectInterface } from '../../core/models/project.model';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
@@ -12,6 +12,8 @@ import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.c
 import { TimelineWidgetComponent } from './widgets/timeline/timeline-widget.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { DashboardFiltersModel } from '../../core/models/dashboard-filters.model';
+import { LocalstorageEnum } from '../../core/enums/localstorage.enum';
+import { LocalStorageService } from '../../core/services/local-storage.service';
 
 @UntilDestroy()
 @Component({
@@ -31,10 +33,14 @@ import { DashboardFiltersModel } from '../../core/models/dashboard-filters.model
   ],
 })
 export class DashboardComponent {
-  protected filters = signal<DashboardFiltersModel>({
-    name: '',
-    status: ''
-  });
+  private readonly localStorageService = inject(LocalStorageService);
+
+  protected filters = signal<DashboardFiltersModel>(
+    this.localStorageService.getItem<DashboardFiltersModel>(LocalstorageEnum.filters) || {
+      name: '',
+      status: '',
+    },
+  );
 
   public projects = signal<ProjectInterface[]>([]);
 

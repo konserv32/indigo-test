@@ -3,11 +3,11 @@
   <mat-form-field>
     <mat-label>Название</mat-label>
     <input matInput [formControl]="nameFormControl" />
-  </mat-form-field><h4>Basic mat-select</h4>
+  </mat-form-field>
   <mat-form-field>
     <mat-label>Статус</mat-label>
     <mat-select [formControl]="statusFormControl">
-      <mat-option [value]="''">-</mat-option>
+      <mat-option [value]="null">-</mat-option>
       @for (status of Object.keys(ProjectStatusesEnum); track status) {
         <mat-option [value]="status">{{ status }}</mat-option>
       }

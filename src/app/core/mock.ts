@@ -25,7 +25,7 @@ export const PROJECTS_MOCK = [
   },
   {
     id: 4,
-    name: 'Проект D',
+    name: 'Проект abCD',
     tasksCompleted: 0,
     tasksTotal: 115,
     startDate: '2024-01-01',

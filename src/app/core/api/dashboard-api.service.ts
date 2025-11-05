@@ -21,6 +21,8 @@ export class DashboardApiService {
       return of(PROJECTS_MOCK);
     }
 
+    this.localStorageService.setItem(LocalstorageEnum.filters, filters);
+
     return of(
       projects
         .filter((project) => project.name.toLowerCase().includes(filters.name.toLowerCase()))
@@ -49,5 +51,20 @@ export class DashboardApiService {
     this.localStorageService.setItem(LocalstorageEnum.projects, projects);
 
     return of(projects);
+  }
+
+  public getFilters() {
+    const filters = this.localStorageService.getItem<DashboardFiltersModel>(
+      LocalstorageEnum.filters,
+    );
+
+    if (!filters) {
+      return of({
+        name: '',
+        status: ''
+      });
+    }
+
+    return of(filters);
   }
 }
