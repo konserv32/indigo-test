@@ -1,0 +1,14 @@
+<app-card class="timeline-widget" cursor="pointer">
+  <header class="timeline-widget__header">
+    <h3>Таймлайн</h3>
+    <button matIconButton><app-icon name="more"></app-icon></button>
+  </header>
+  <div class="timeline-widget__content">
+    @for (project of projects(); track project.id) {
+      <p>
+        <strong>{{ project.id }}. {{ project.name }}:</strong>
+        {{ project.startDate | date: 'dd.MM.yyyy' }}
+      </p>
+    }
+  </div>
+</app-card>

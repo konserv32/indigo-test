@@ -1,4 +1,4 @@
-.progress-widget {
+.timeline-widget {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -9,7 +9,9 @@
     align-items: center;
   }
 
-  &__chart {
-    width: 250px;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 }

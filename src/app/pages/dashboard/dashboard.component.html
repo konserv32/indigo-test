@@ -10,4 +10,7 @@
   @defer (when widgetsService.widget) {
     <app-statistic-widget cdkDrag [projects]="projects()"></app-statistic-widget>
   }
+  @defer (when widgetsService.widget) {
+    <app-timeline-widget cdkDrag [projects]="projects()"></app-timeline-widget>
+  }
 </div>

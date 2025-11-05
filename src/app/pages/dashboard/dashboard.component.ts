@@ -9,6 +9,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ProgressWidgetComponent } from './widgets/progress/progress-widget.component';
 import { WidgetsService } from '../../core/services/widgets.service';
 import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.component';
+import { TimelineWidgetComponent } from './widgets/timeline/timeline-widget.component';
 
 @UntilDestroy()
 @Component({
@@ -18,7 +19,13 @@ import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.c
   providers: [DashboardApiService, provideCharts(withDefaultRegisterables(DoughnutController))],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CdkDropList, CdkDrag, ProgressWidgetComponent, StatisticWidgetComponent],
+  imports: [
+    CdkDropList,
+    CdkDrag,
+    ProgressWidgetComponent,
+    StatisticWidgetComponent,
+    TimelineWidgetComponent,
+  ],
 })
 export class DashboardComponent {
   protected page = signal<number>(1);

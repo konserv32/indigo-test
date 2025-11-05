@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { WidgetsService } from '../../core/services/widgets.service';
 import { ProgressWidgetComponent } from './widgets/progress/progress-widget.component';
 import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.component';
+import { TimelineWidgetComponent } from './widgets/timeline/timeline-widget.component';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -27,6 +28,19 @@ export const DASHBOARD_ROUTES: Routes = [
         loadComponent: async () =>
           import('./widgets/statistic/statistic-widget.component').then(
             (m) => StatisticWidgetComponent,
+          ),
+        canMatch: [
+          async () => {
+            const widgetsService = inject(WidgetsService);
+            return widgetsService.widget;
+          },
+        ],
+      },
+      {
+        path: '',
+        loadComponent: async () =>
+          import('./widgets/timeline/timeline-widget.component').then(
+            (m) => TimelineWidgetComponent,
           ),
         canMatch: [
           async () => {

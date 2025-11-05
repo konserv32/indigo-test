@@ -8,6 +8,10 @@
   gap: 16px;
 }
 
+.cdk-drag-preview {
+  overflow: visible;
+}
+
 .cdk-drag-placeholder {
   opacity: 0;
 }
