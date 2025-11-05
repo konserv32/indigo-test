@@ -1,6 +1,7 @@
 :host {
   display: flex;
   border-radius: 16px;
-  box-shadow: var(--mat-sys-level2);
   padding: 16px;
+  background-color: var(--mat-sys-surface);
+  box-shadow: var(--mat-sys-level2);
 }

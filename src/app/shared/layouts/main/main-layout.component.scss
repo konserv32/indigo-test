@@ -8,12 +8,12 @@
 }
 
 .content-wrapper{
-  display: flex;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
+  overflow-y: auto;
+  padding: 40px;
 
   .content {
-    width: 100%;
     max-width: 1600px;
-    padding: 40px;
   }
 }

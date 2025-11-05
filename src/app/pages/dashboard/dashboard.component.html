@@ -1,6 +1,10 @@
-<h2>Dashboard</h2>
-<div class="dashboard">
+<div
+  cdkDropList
+  cdkDropListOrientation="mixed"
+  class="dashboard"
+  (cdkDropListDropped)="drop($event)"
+>
   @for (project of projects(); track project.id) {
-    <app-project-card [project]="project"></app-project-card>
+    <app-project-card cdkDrag [project]="project"></app-project-card>
   }
 </div>

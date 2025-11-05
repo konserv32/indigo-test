@@ -1,10 +1,11 @@
-<app-card class="project-card">
+<app-card class="project-card" cursor="pointer">
   <header class="project-card__header">
     <h3>{{ project().id }}. {{ project().name }}</h3>
     <button matIconButton><app-icon name="more"></app-icon></button>
   </header>
   <div class="project-card__content">
     <canvas
+      class="project-card__content__chart"
       baseChart
       [labels]="doughnutChartLabels"
       [datasets]="doughnutChartDatasets()"
