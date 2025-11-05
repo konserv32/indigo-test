@@ -10,6 +10,7 @@ import { ProgressWidgetComponent } from './widgets/progress/progress-widget.comp
 import { WidgetsService } from '../../core/services/widgets.service';
 import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.component';
 import { TimelineWidgetComponent } from './widgets/timeline/timeline-widget.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 @UntilDestroy()
 @Component({
@@ -25,6 +26,7 @@ import { TimelineWidgetComponent } from './widgets/timeline/timeline-widget.comp
     ProgressWidgetComponent,
     StatisticWidgetComponent,
     TimelineWidgetComponent,
+    ProjectsComponent,
   ],
 })
 export class DashboardComponent {

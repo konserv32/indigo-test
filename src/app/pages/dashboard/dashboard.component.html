@@ -1,3 +1,4 @@
+<app-projects [projects]="projects()" />
 <div
   cdkDropList
   cdkDropListOrientation="mixed"
@@ -5,12 +6,12 @@
   (cdkDropListDropped)="drop($event)"
 >
   @defer (when widgetsService.widget) {
-    <app-progress-widget cdkDrag [projects]="projects()"></app-progress-widget>
+    <app-progress-widget cdkDrag [projects]="projects()" />
   }
   @defer (when widgetsService.widget) {
-    <app-statistic-widget cdkDrag [projects]="projects()"></app-statistic-widget>
+    <app-statistic-widget cdkDrag [projects]="projects()" />
   }
   @defer (when widgetsService.widget) {
-    <app-timeline-widget cdkDrag [projects]="projects()"></app-timeline-widget>
+    <app-timeline-widget cdkDrag [projects]="projects()" />
   }
 </div>
