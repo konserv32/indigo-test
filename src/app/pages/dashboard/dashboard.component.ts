@@ -8,6 +8,7 @@ import { delay } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ProgressWidgetComponent } from './widgets/progress/progress-widget.component';
 import { WidgetsService } from '../../core/services/widgets.service';
+import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.component';
 
 @UntilDestroy()
 @Component({
@@ -17,14 +18,17 @@ import { WidgetsService } from '../../core/services/widgets.service';
   providers: [DashboardApiService, provideCharts(withDefaultRegisterables(DoughnutController))],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ CdkDropList, CdkDrag, ProgressWidgetComponent],
+  imports: [CdkDropList, CdkDrag, ProgressWidgetComponent, StatisticWidgetComponent],
 })
 export class DashboardComponent {
   protected page = signal<number>(1);
 
   public projects = signal<ProjectInterface[]>([]);
 
-  constructor(private readonly dashboardApiService: DashboardApiService, public readonly widgetsService: WidgetsService) {
+  constructor(
+    private readonly dashboardApiService: DashboardApiService,
+    public readonly widgetsService: WidgetsService,
+  ) {
     effect(() => {
       this.dashboardApiService
         .getProjects(this.page())
