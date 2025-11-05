@@ -1,7 +1,7 @@
 <app-card class="progress-widget" cursor="pointer">
   <header class="progress-widget__header">
     <h3>Прогресс</h3>
-    <button matIconButton><app-icon name="more"></app-icon></button>
+    <button matIconButton (click)="onDelete.emit()"><app-icon name="basket"></app-icon></button>
   </header>
   <canvas
     class="progress-widget__chart"

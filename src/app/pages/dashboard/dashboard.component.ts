@@ -14,6 +14,9 @@ import { ProjectsComponent } from './projects/projects.component';
 import { DashboardFiltersModel } from '../../core/models/dashboard-filters.model';
 import { LocalstorageEnum } from '../../core/enums/localstorage.enum';
 import { LocalStorageService } from '../../core/services/local-storage.service';
+import { WidgetsEnum } from '../../core/enums/widgets.enum';
+import { MatButton } from '@angular/material/button';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 
 @UntilDestroy()
 @Component({
@@ -30,10 +33,15 @@ import { LocalStorageService } from '../../core/services/local-storage.service';
     StatisticWidgetComponent,
     TimelineWidgetComponent,
     ProjectsComponent,
+    MatButton,
+    MatMenu,
+    MatMenuItem,
+    MatMenuTrigger,
   ],
 })
 export class DashboardComponent {
-  private readonly localStorageService = inject(LocalStorageService);
+  private readonly localStorageService: LocalStorageService = inject(LocalStorageService);
+  public readonly widgetsService: WidgetsService = inject(WidgetsService);
 
   protected filters = signal<DashboardFiltersModel>(
     this.localStorageService.getItem<DashboardFiltersModel>(LocalstorageEnum.filters) || {
@@ -44,10 +52,9 @@ export class DashboardComponent {
 
   public projects = signal<ProjectInterface[]>([]);
 
-  constructor(
-    private readonly dashboardApiService: DashboardApiService,
-    public readonly widgetsService: WidgetsService,
-  ) {
+  protected widgets = this.widgetsService.widgets;
+
+  constructor(private readonly dashboardApiService: DashboardApiService) {
     effect(() => {
       this.dashboardApiService
         .getProjects(this.filters())
@@ -58,13 +65,23 @@ export class DashboardComponent {
 
   protected drop(event: CdkDragDrop<string[]>) {
     if (event.previousIndex !== event.currentIndex) {
-      const projects = this.projects();
-      moveItemInArray(projects, event.previousIndex, event.currentIndex);
-      this.dashboardApiService.changeProjectPositions(projects);
+      moveItemInArray(this.widgets(), event.previousIndex, event.currentIndex);
+      this.widgetsService.saveWidgetPositions(this.widgets());
     }
   }
 
   public setFilters(filters: DashboardFiltersModel) {
     this.filters.set(filters);
   }
+
+  public addWidget(name: string) {
+    this.widgetsService.addWidget({name, id: this.widgetsService.lastIndex() });
+  }
+
+  public removeWidget(id: number) {
+    this.widgetsService.removeWidget(id);
+  }
+
+  protected readonly WidgetsEnum = WidgetsEnum;
+  protected readonly Object = Object;
 }

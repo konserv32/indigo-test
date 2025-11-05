@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { ProjectInterface } from '../../../../core/models/project.model';
 import { CardComponent } from '../../../../shared/components/card/card.component';
 import { IconComponent } from '../../../../shared/components/icon/icon.component';
@@ -15,4 +15,6 @@ import { DatePipe } from '@angular/common';
 })
 export class TimelineWidgetComponent {
   public projects = input.required<ProjectInterface[]>();
+
+  public onDelete = output();
 }

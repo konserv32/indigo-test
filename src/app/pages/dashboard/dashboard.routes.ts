@@ -4,6 +4,7 @@ import { WidgetsService } from '../../core/services/widgets.service';
 import { ProgressWidgetComponent } from './widgets/progress/progress-widget.component';
 import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.component';
 import { TimelineWidgetComponent } from './widgets/timeline/timeline-widget.component';
+import { WidgetsEnum } from '../../core/enums/widgets.enum';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -19,7 +20,7 @@ export const DASHBOARD_ROUTES: Routes = [
         canMatch: [
           async () => {
             const widgetsService = inject(WidgetsService);
-            return widgetsService.widget;
+            return widgetsService.widgets().find((widget)=> widget.name === WidgetsEnum.progress);
           },
         ],
       },
@@ -32,7 +33,7 @@ export const DASHBOARD_ROUTES: Routes = [
         canMatch: [
           async () => {
             const widgetsService = inject(WidgetsService);
-            return widgetsService.widget;
+            return widgetsService.widgets().find((widget)=> widget.name === WidgetsEnum.statistic);
           },
         ],
       },
@@ -45,7 +46,7 @@ export const DASHBOARD_ROUTES: Routes = [
         canMatch: [
           async () => {
             const widgetsService = inject(WidgetsService);
-            return widgetsService.widget;
+            return widgetsService.widgets().find((widget)=> widget.name === WidgetsEnum.timeline);
           },
         ],
       },

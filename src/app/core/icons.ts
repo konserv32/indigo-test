@@ -46,4 +46,12 @@ export class AppIcons {
     '<g id="User" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="0,0" stroke-linecap="round"> ' +
     '<path d="M12,11 C13.3807119,11 14.5,9.88071187 14.5,8.5 C14.5,7.11928813 13.3807119,6 12,6 C10.6192881,6 9.5,7.11928813 9.5,8.5 C9.5,9.88071187 10.6192881,11 12,11 Z" id="shape-02" stroke="#030819" stroke-width="2"> </path> ' +
     '<path d="M6,20 C6,16.6862915 8.6862915,14 12,14 C15.3137085,14 18,16.6862915 18,20 L18,20 L18,20" id="Path" stroke="#030819" stroke-width="2"> </path> </g> </g></svg>'
+
+  public static readonly basket = '<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">' +
+    '<g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> ' +
+    '<title>Trash</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Trash"> <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"> </rect> ' +
+    '<path d="M6,6 L6.96683,19.5356 C6.98552,19.7973 7.20324,20 7.46556,20 L16.5344,20 C16.7968,20 17.0145,19.7973 17.0332,19.5356 L18,6" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"> </path> ' +
+    '<line x1="4" y1="6" x2="20" y2="6" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"> </line> <line x1="10" y1="10" x2="10" y2="16" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"> </line> ' +
+    '<line x1="14" y1="10" x2="14" y2="16" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"> </line> ' +
+    '<path d="M15,6 C15,4.34315 13.6569,3 12,3 C10.3431,3 9,4.34315 9,6" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"> </path> </g> </g> </g></svg>'
 }

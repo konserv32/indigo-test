@@ -1,7 +1,7 @@
 <app-card class="statistic-widget" cursor="pointer">
   <header class="statistic-widget__header">
     <h3>Статистика</h3>
-    <button matIconButton><app-icon name="more"></app-icon></button>
+    <button matIconButton><app-icon name="basket" (click)="onDelete.emit()"></app-icon></button>
   </header>
   <div class="statistic-widget__content">
     <p><strong>Поставлено задач:</strong> {{ statistic().tasksTotal }}</p>

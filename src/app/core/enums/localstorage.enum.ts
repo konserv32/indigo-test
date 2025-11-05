@@ -3,4 +3,5 @@ export enum LocalstorageEnum {
   users = 'users',
   projects = 'projects',
   filters = 'filters',
+  widgets = 'widgets',
 }

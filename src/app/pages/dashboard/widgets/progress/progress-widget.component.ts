@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, Signal } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { ProjectInterface } from '../../../../core/models/project.model';
 import { BaseChartDirective } from 'ng2-charts';
@@ -16,6 +16,8 @@ import { MatIconButton } from '@angular/material/button';
 })
 export class ProgressWidgetComponent {
   public projects = input.required<ProjectInterface[]>();
+
+  public onDelete = output();
 
   private data = computed(()=>{
     return this.projects().reduce((prev, current)=>{

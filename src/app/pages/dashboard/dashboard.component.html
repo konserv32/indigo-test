@@ -5,13 +5,23 @@
   class="dashboard"
   (cdkDropListDropped)="drop($event)"
 >
-  @defer (when widgetsService.widget) {
-    <app-progress-widget cdkDrag [projects]="projects()" />
-  }
-  @defer (when widgetsService.widget) {
-    <app-statistic-widget cdkDrag [projects]="projects()" />
-  }
-  @defer (when widgetsService.widget) {
-    <app-timeline-widget cdkDrag [projects]="projects()" />
+  @for (widget of widgets(); track widget.id) {
+    @defer (when widget.name === WidgetsEnum.progress) {
+      <app-progress-widget cdkDrag [projects]="projects()" (onDelete)="removeWidget(widget.id)" />
+    }
+    @defer (when widget.name === WidgetsEnum.statistic) {
+      <app-statistic-widget cdkDrag [projects]="projects()" (onDelete)="removeWidget(widget.id)" />
+    }
+    @defer (when widget.name === WidgetsEnum.timeline) {
+      <app-timeline-widget cdkDrag [projects]="projects()" (onDelete)="removeWidget(widget.id)" />
+    }
   }
 </div>
+<button class="add-widget-button" matButton="filled" [matMenuTriggerFor]="menu">
+  Добавить виджет
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="addWidget(WidgetsEnum.progress)">Прогресс</button>
+  <button mat-menu-item (click)="addWidget(WidgetsEnum.timeline)">Таймлайн</button>
+  <button mat-menu-item (click)="addWidget(WidgetsEnum.statistic)">Статистика</button>
+</mat-menu>

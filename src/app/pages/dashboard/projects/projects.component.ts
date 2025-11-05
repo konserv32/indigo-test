@@ -21,6 +21,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { LocalstorageEnum } from '../../../core/enums/localstorage.enum';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { MatDivider } from '@angular/material/divider';
 
 @UntilDestroy()
 @Component({
@@ -29,18 +30,27 @@ import { LocalStorageService } from '../../../core/services/local-storage.servic
   styleUrl: './projects.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CardComponent, ReactiveFormsModule, MatFormFieldModule, MatInput, MatInputModule, MatSelectModule],
+  imports: [
+    CardComponent,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInput,
+    MatInputModule,
+    MatSelectModule,
+    MatDivider,
+  ],
 })
 export class ProjectsComponent {
   private readonly localStorageService = inject(LocalStorageService);
 
   public projects = input.required<ProjectInterface[]>();
 
-  protected filters =
-    this.localStorageService.getItem<DashboardFiltersModel>(LocalstorageEnum.filters) || {
-      name: '',
-      status: '',
-    }
+  protected filters = this.localStorageService.getItem<DashboardFiltersModel>(
+    LocalstorageEnum.filters,
+  ) || {
+    name: '',
+    status: '',
+  };
 
   public setFilters = output<DashboardFiltersModel>();
 
@@ -48,7 +58,6 @@ export class ProjectsComponent {
   protected statusFormControl = new FormControl(this.filters.status);
 
   constructor(protected readonly dashboardApiService: DashboardApiService) {
-
     this.nameFormControl.valueChanges.pipe(untilDestroyed(this)).subscribe((event) => {
       this.setFilters.emit({ name: event || '', status: this.statusFormControl.value || '' });
     });

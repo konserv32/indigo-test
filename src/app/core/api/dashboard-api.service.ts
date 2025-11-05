@@ -46,25 +46,4 @@ export class DashboardApiService {
         }),
     );
   }
-
-  public changeProjectPositions(projects: ProjectInterface[]): Observable<ProjectInterface[]> {
-    this.localStorageService.setItem(LocalstorageEnum.projects, projects);
-
-    return of(projects);
-  }
-
-  public getFilters() {
-    const filters = this.localStorageService.getItem<DashboardFiltersModel>(
-      LocalstorageEnum.filters,
-    );
-
-    if (!filters) {
-      return of({
-        name: '',
-        status: ''
-      });
-    }
-
-    return of(filters);
-  }
 }

@@ -13,6 +13,7 @@
       }
     </mat-select>
   </mat-form-field>
+  <mat-divider />
   <h3>Проекты:</h3>
   @for (project of projects(); track project.id) {
     <h4>{{ project.id }}. {{ project.name }}</h4>
