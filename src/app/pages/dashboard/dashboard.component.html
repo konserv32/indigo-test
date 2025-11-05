@@ -1,4 +1,4 @@
-<app-projects [projects]="projects()" />
+<app-projects [projects]="projects()" (setFilters)="setFilters($event)" />
 <div
   cdkDropList
   cdkDropListOrientation="mixed"

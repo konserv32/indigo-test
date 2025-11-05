@@ -11,6 +11,7 @@ import { WidgetsService } from '../../core/services/widgets.service';
 import { StatisticWidgetComponent } from './widgets/statistic/statistic-widget.component';
 import { TimelineWidgetComponent } from './widgets/timeline/timeline-widget.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { DashboardFiltersModel } from '../../core/models/dashboard-filters.model';
 
 @UntilDestroy()
 @Component({
@@ -30,7 +31,10 @@ import { ProjectsComponent } from './projects/projects.component';
   ],
 })
 export class DashboardComponent {
-  protected page = signal<number>(1);
+  protected filters = signal<DashboardFiltersModel>({
+    name: '',
+    status: ''
+  });
 
   public projects = signal<ProjectInterface[]>([]);
 
@@ -40,17 +44,21 @@ export class DashboardComponent {
   ) {
     effect(() => {
       this.dashboardApiService
-        .getProjects(this.page())
+        .getProjects(this.filters())
         .pipe(delay(1000), untilDestroyed(this))
-        .subscribe((projects) => this.projects.update(() => projects));
+        .subscribe((projects) => this.projects.set(projects));
     });
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  protected drop(event: CdkDragDrop<string[]>) {
     if (event.previousIndex !== event.currentIndex) {
       const projects = this.projects();
       moveItemInArray(projects, event.previousIndex, event.currentIndex);
       this.dashboardApiService.changeProjectPositions(projects);
     }
+  }
+
+  public setFilters(filters: DashboardFiltersModel) {
+    this.filters.set(filters);
   }
 }

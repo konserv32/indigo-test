@@ -10,7 +10,7 @@ export const PROJECTS_MOCK = [
   {
     id: 2,
     name: 'Проект B',
-    tasksCompleted: 75,
+    tasksCompleted: 140,
     tasksTotal: 140,
     startDate: '2023-06-01',
     endDate: '2024-03-31',
@@ -26,7 +26,7 @@ export const PROJECTS_MOCK = [
   {
     id: 4,
     name: 'Проект D',
-    tasksCompleted: 25,
+    tasksCompleted: 0,
     tasksTotal: 115,
     startDate: '2024-01-01',
     endDate: '2024-12-31',

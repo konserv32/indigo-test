@@ -7,7 +7,7 @@
     @for (project of projects(); track project.id) {
       <p>
         <strong>{{ project.id }}. {{ project.name }}:</strong>
-        {{ project.startDate | date: 'dd.MM.yyyy' }}
+        {{ project.startDate | date: 'dd.MM.yyyy' }} - {{ project.endDate | date: 'dd.MM.yyyy' }}
       </p>
     }
   </div>
